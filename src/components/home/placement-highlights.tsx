@@ -1,4 +1,3 @@
-import Image from "next/image";
 import SectionHeading from "@/components/common/section-heading";
 import AnimatedCounter from "@/components/common/animated-counter";
 import { placementStats } from "@/lib/data";
@@ -7,7 +6,7 @@ import AirlineCarousel from "./airline-carousel";
 
 export default function PlacementHighlights() {
   return (
-    <section className="py-20 md:py-28 bg-background">
+    <section className="py-20 md:py-28 bg-white text-foreground">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <SectionHeading
           title="Launching Careers Sky-High"
