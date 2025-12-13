@@ -1,13 +1,20 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import ScrollStack, { ScrollStackItem } from "@/components/common/scroll-stack";
 import SectionHeading from "@/components/common/section-heading";
 import { directors } from "@/lib/data";
 import Image from "next/image";
 
 export default function MeetTheDirectors() {
-  if (typeof window === 'undefined') {
-    return null; 
+  const [isClient, setIsClient] = useState(false);
+
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
+
+  if (!isClient) {
+    return null;
   }
 
   return (
