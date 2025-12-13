@@ -48,9 +48,9 @@ export default function WhyChooseUs() {
                 <div className="absolute inset-0 w-full h-full z-0">
                   <ShapeBlur
                     variation={0}
-                    shapeSize={1.2}
-                    roundness={0.4}
-                    borderSize={0.05}
+                    shapeSize={0.9}
+                    roundness={0.2}
+                    borderSize={0.02}
                     circleSize={0.3}
                     circleEdge={0.5}
                   />
