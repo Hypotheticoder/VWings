@@ -7,6 +7,7 @@ type Item = {
   id: string;
   img: string;
   height: number;
+  width?: number;
   url: string;
   x?: number;
   y?: number;
@@ -196,6 +197,11 @@ const Masonry = ({
         duration: 0.3,
         ease: 'power2.out'
       });
+       gsap.to(`[data-key="${id}"] .overlay`, {
+        opacity: 1,
+        duration: 0.3,
+        ease: 'power2.out'
+      });
     }
   };
 
@@ -204,6 +210,11 @@ const Masonry = ({
       gsap.to(`[data-key="${id}"]`, {
         scale: 1,
         zIndex: 1,
+        duration: 0.3,
+        ease: 'power2.out'
+      });
+      gsap.to(`[data-key="${id}"] .overlay`, {
+        opacity: 0,
         duration: 0.3,
         ease: 'power2.out'
       });
@@ -223,11 +234,11 @@ const Masonry = ({
           onMouseLeave={() => handleMouseLeave(item.id)}
         >
           <div
-            className="relative w-full h-full bg-cover bg-center rounded-lg shadow-lg overflow-hidden
+            className="relative w-full h-full rounded-lg shadow-lg overflow-hidden
                        bg-card/30 backdrop-blur-xl border border-white/10"
           >
              <img src={item.img} alt="" className="absolute inset-0 w-full h-full object-cover"/>
-             <div className="absolute inset-0 bg-black/10"></div>
+             <div className="overlay absolute inset-0 bg-black/50 opacity-0 transition-opacity duration-300"></div>
           </div>
         </div>
       ))}
