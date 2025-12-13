@@ -2,6 +2,7 @@ import SectionHeading from "@/components/common/section-heading";
 import { whyChooseUsItems } from "@/lib/data";
 import { MotionDiv } from "@/components/common/motion-components";
 import { Card, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
+import ShapeBlur from "../common/shape-blur";
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -43,8 +44,18 @@ export default function WhyChooseUs() {
         >
           {whyChooseUsItems.map((item, index) => (
             <MotionDiv key={index} variants={itemVariants}>
-              <Card className="h-full text-center bg-card/50 backdrop-blur-xl border-primary/20 hover:border-primary hover:shadow-2xl hover:shadow-primary/10 transition-all duration-300 transform hover:-translate-y-2">
-                <CardHeader className="items-center p-6">
+              <Card className="relative overflow-hidden h-full text-center bg-card/50 backdrop-blur-xl border-primary/20 hover:border-primary hover:shadow-2xl hover:shadow-primary/10 transition-all duration-300 transform hover:-translate-y-2">
+                <div className="absolute inset-0 w-full h-full z-0">
+                  <ShapeBlur
+                    variation={2}
+                    shapeSize={1}
+                    roundness={0.2}
+                    borderSize={0.02}
+                    circleSize={0.3}
+                    circleEdge={0.9}
+                  />
+                </div>
+                <CardHeader className="relative items-center p-6 z-10">
                   <div className="p-4 bg-primary/10 rounded-full mb-4">
                      <item.icon className="h-8 w-8 text-primary" />
                   </div>
