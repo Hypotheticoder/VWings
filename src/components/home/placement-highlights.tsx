@@ -1,12 +1,23 @@
+"use client";
+
 import SectionHeading from "@/components/common/section-heading";
 import AnimatedCounter from "@/components/common/animated-counter";
 import { placementStats } from "@/lib/data";
 import { MotionDiv } from "@/components/common/motion-components";
-import AirlineCarousel from "./airline-carousel";
+import Masonry from "@/components/common/masonry";
+import { airlineLogos } from "@/lib/data";
+
+const masonryItems = airlineLogos.map((logo, index) => ({
+    id: logo.id || `airline-${index}`,
+    img: logo.imageUrl,
+    height: logo.height || 400,
+    width: logo.width || 600,
+    url: '#'
+}));
 
 export default function PlacementHighlights() {
   return (
-    <section className="py-20 md:py-28 bg-white text-foreground">
+    <section className="py-20 md:py-28 bg-transparent text-foreground">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <SectionHeading
           title="Launching Careers Sky-High"
@@ -38,7 +49,7 @@ export default function PlacementHighlights() {
             <p className="mt-2 text-foreground/80 text-lg">Years of Excellence</p>
           </MotionDiv>
         </MotionDiv>
-        <AirlineCarousel />
+        <Masonry items={masonryItems} animateFrom="center" />
       </div>
     </section>
   );

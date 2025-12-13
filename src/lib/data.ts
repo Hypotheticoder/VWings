@@ -11,6 +11,8 @@ const findImage = (id: string): ImagePlaceholder => {
             description: 'Placeholder image',
             imageUrl: 'https://picsum.photos/seed/error/600/400',
             imageHint: 'fallback',
+            width: 600,
+            height: 400,
         };
     }
     return image;
@@ -103,6 +105,8 @@ export const airlineLogos = [
     findImage('airline-logo-3'),
     findImage('airline-logo-4'),
     findImage('airline-logo-5'),
+    findImage('airline-logo-6'),
+    findImage('airline-logo-7'),
 ];
 
 
