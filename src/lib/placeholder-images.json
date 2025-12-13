@@ -1,3 +1,70 @@
 {
-  "placeholderImages": []
+  "placeholderImages": [
+    {
+      "id": "course-ppl",
+      "description": "A small aircraft in flight during sunset, representing a private pilot license course.",
+      "imageUrl": "https://images.unsplash.com/photo-1703355686225-b9563387505a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxzbWFsbCUyMGFpcmNyYWZ0fGVufDB8fHx8MTc2NTY2MTA1OHww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "small aircraft"
+    },
+    {
+      "id": "course-cpl",
+      "description": "The cockpit of a commercial airliner, symbolizing a commercial pilot license course.",
+      "imageUrl": "https://images.unsplash.com/photo-1698073176073-2259484c87b4?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxMHx8Y29ja3BpdCUyMHZpZXd8ZW58MHx8fHwxNzY1NTY0NjI0fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "cockpit view"
+    },
+    {
+      "id": "course-atpl",
+      "description": "A large passenger jet flying high above the clouds, for the airline transport pilot license.",
+      "imageUrl": "https://images.unsplash.com/photo-1649486927127-8c16f6d175ac?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw0fHxhaXJsaW5lciUyMGNsb3Vkc3xlbnwwfHx8fDE3NjU2NjEwNTh8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "airliner clouds"
+    },
+    {
+      "id": "testimonial-1",
+      "description": "Portrait of a smiling graduate in pilot uniform.",
+      "imageUrl": "https://images.unsplash.com/photo-1730638431018-c34df8e32816?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHxwaWxvdCUyMHBvcnRyYWl0fGVufDB8fHx8MTc2NTU2Mjk0Nnww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "pilot portrait"
+    },
+    {
+      "id": "testimonial-2",
+      "description": "Portrait of another successful graduate.",
+      "imageUrl": "https://images.unsplash.com/photo-1494790108377-be9c29b29330?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHx3b21hbiUyMHNtaWxpbmd8ZW58MHx8fHwxNzY1NTg0NzU5fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "woman smiling"
+    },
+    {
+      "id": "testimonial-3",
+      "description": "Candid shot of a student in a simulator.",
+      "imageUrl": "https://images.unsplash.com/photo-1649521002153-38b944196c9e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw5fHxmbGlnaHQlMjBzaW11bGF0b3J8ZW58MHx8fHwxNzY1NjYxMDU4fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "flight simulator"
+    },
+    {
+      "id": "airline-logo-1",
+      "description": "Placeholder for an airline logo.",
+      "imageUrl": "https://images.unsplash.com/photo-1761599934413-7a600e9292fd?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw2fHxhaXJsaW5lJTIwbG9nb3xlbnwwfHx8fDE3NjU1NzU4MTF8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "airline logo"
+    },
+    {
+      "id": "airline-logo-2",
+      "description": "Placeholder for another airline logo.",
+      "imageUrl": "https://images.unsplash.com/photo-1759365400065-ab88a7b8e82f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxhdmlhdGlvbiUyMGJyYW5kfGVufDB8fHx8MTc2NTY2MTA1OHww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "aviation brand"
+    },
+    {
+      "id": "airline-logo-3",
+      "description": "Placeholder for a third airline logo.",
+      "imageUrl": "https://images.unsplash.com/photo-1549924231-f129b911e442?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw3fHxjb21wYW55JTIwbG9nb3xlbnwwfHx8fDE3NjU2NDEwMTN8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "company logo"
+    },
+    {
+      "id": "airline-logo-4",
+      "description": "Placeholder for a fourth airline logo.",
+      "imageUrl": "https://images.unsplash.com/photo-1759365400065-ab88a7b8e82f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw5fHx0cmF2ZWwlMjBsb2dvfGVufDB8fHx8MTc2NTYyODU0Mnww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "travel logo"
+    },
+    {
+      "id": "airline-logo-5",
+      "description": "Placeholder for a fifth airline logo.",
+      "imageUrl": "https://images.unsplash.com/photo-1763188251114-5bf93639cfe4?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw3fHx0cmFuc3BvcnQlMjBsb2dvfGVufDB8fHx8MTc2NTY2MTA1OHww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "transport logo"
+    }
+  ]
 }
