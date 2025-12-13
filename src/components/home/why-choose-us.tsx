@@ -47,12 +47,12 @@ export default function WhyChooseUs() {
               <Card className="relative overflow-hidden h-full text-center bg-card/50 backdrop-blur-xl border-primary/20 hover:border-primary hover:shadow-2xl hover:shadow-primary/10 transition-all duration-300 transform hover:-translate-y-2">
                 <div className="absolute inset-0 w-full h-full z-0">
                   <ShapeBlur
-                    variation={2}
-                    shapeSize={1}
-                    roundness={0.2}
-                    borderSize={0.02}
+                    variation={0}
+                    shapeSize={1.2}
+                    roundness={0.4}
+                    borderSize={0.05}
                     circleSize={0.3}
-                    circleEdge={0.9}
+                    circleEdge={0.5}
                   />
                 </div>
                 <CardHeader className="relative items-center p-6 z-10">
