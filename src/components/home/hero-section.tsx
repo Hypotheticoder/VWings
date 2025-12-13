@@ -31,7 +31,7 @@ export default function HeroSection() {
         src="https://videos.pexels.com/video-files/3844645/3844645-hd_1920_1080_25fps.mp4"
       />
       {/* Overlay */}
-      <div className="absolute top-0 left-0 w-full h-full bg-background/60 z-10" />
+      <div className="absolute top-0 left-0 w-full h-full bg-black/60 z-10" />
 
       {/* Content */}
       <div className="relative z-20 flex flex-col items-center justify-center h-full text-center text-white px-4">
