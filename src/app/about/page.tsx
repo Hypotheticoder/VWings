@@ -4,6 +4,7 @@ import Image from "next/image";
 import { PlaceHolderImages } from "@/lib/placeholder-images";
 import WhyChooseUs from "@/components/home/why-choose-us";
 import PlacementHighlights from "@/components/home/placement-highlights";
+import MeetTheDirectors from "@/components/about/meet-the-directors";
 
 export default function AboutPage() {
   const heroImage = PlaceHolderImages.find(img => img.id === 'course-atpl');
@@ -45,6 +46,7 @@ export default function AboutPage() {
           )}
         </MotionDiv>
       </div>
+      <MeetTheDirectors />
       <div className="mt-20">
         <WhyChooseUs />
       </div>

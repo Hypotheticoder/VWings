@@ -111,6 +111,30 @@
       "imageHint": "tech logo",
       "width": 800,
       "height": 533
+    },
+    {
+      "id": "director-1",
+      "description": "Portrait of the company's founder.",
+      "imageUrl": "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxCEOJTIwcG9ydHJhaXR8ZW58MHx8fHwxNzY1NzI4NTU3fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "CEO portrait",
+      "width": 1080,
+      "height": 720
+    },
+    {
+      "id": "director-2",
+      "description": "Portrait of the director of training.",
+      "imageUrl": "https://images.unsplash.com/photo-1556157382-97eda2d62296?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHxtYWxlJTIwZGlyZWN0b3IlMjBwb3J0cmFpdHxlbnwwfHx8fDE3NjU3Mjg1NTd8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "male director",
+      "width": 1080,
+      "height": 720
+    },
+    {
+      "id": "director-3",
+      "description": "Portrait of the head of aviation science.",
+      "imageUrl": "https://images.unsplash.com/photo-1581093450021-4a7360e9a6b5?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHxmZW1hbGUlMjBzY2llbnRpc3QlMjBwb3J0cmFpdHxlbnwwfHx8fDE3NjU3Mjg1NTd8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "female scientist",
+      "width": 1080,
+      "height": 720
     }
   ]
 }

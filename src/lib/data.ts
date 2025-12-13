@@ -130,3 +130,24 @@ export const testimonials = [
         image: findImage('testimonial-3'),
     },
 ];
+
+export const directors = [
+  {
+    name: 'Capt. Emily Carter',
+    title: 'Founder & CEO',
+    bio: 'With over 25 years in aviation, from bush piloting in Alaska to flying the A380, Capt. Carter founded Elevate with a vision to redefine pilot training for the 21st century.',
+    image: findImage('director-1'),
+  },
+  {
+    name: 'James Maxwell',
+    title: 'Director of Training',
+    bio: 'James is a former Air Force instructor pilot and a master of aviation pedagogy. He designs our world-class curriculum, ensuring every student receives the most effective training possible.',
+    image: findImage('director-2'),
+  },
+  {
+    name: 'Dr. Isabella Rossi',
+    title: 'Head of Aviation Science',
+    bio: 'Holding a Ph.D. in Aerospace Engineering, Dr. Rossi leads our ground school, blending complex theory with practical application to create knowledgeable and confident pilots.',
+    image: findImage('director-3'),
+  },
+];
