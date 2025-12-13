@@ -17,6 +17,7 @@ varying vec2 v_texcoord;
 uniform vec2 u_mouse;
 uniform vec2 u_resolution;
 uniform float u_pixelRatio;
+uniform vec3 u_color;
 
 uniform float u_shapeSize;
 uniform float u_roundness;
@@ -121,7 +122,7 @@ void main() {
         sdf = fill(sdf, 0.05, sdfCircle) * 1.4;
     }
 
-    vec3 color = vec3(1.0);
+    vec3 color = u_color;
     float alpha = sdf;
     gl_FragColor = vec4(color.rgb, alpha);
 }
@@ -135,7 +136,8 @@ const ShapeBlur = ({
   roundness = 0.4,
   borderSize = 0.05,
   circleSize = 0.3,
-  circleEdge = 0.5
+  circleEdge = 0.5,
+  color = '#F5C300'
 }: {
     className?: string;
     variation?: number;
@@ -145,6 +147,7 @@ const ShapeBlur = ({
     borderSize?: number;
     circleSize?: number;
     circleEdge?: number;
+    color?: string;
 }) => {
   const mountRef = useRef<HTMLDivElement>(null);
 
@@ -178,6 +181,7 @@ const ShapeBlur = ({
         u_mouse: { value: vMouseDamp },
         u_resolution: { value: vResolution },
         u_pixelRatio: { value: pixelRatioProp },
+        u_color: { value: new THREE.Color(color) },
         u_shapeSize: { value: shapeSize },
         u_roundness: { value: roundness },
         u_borderSize: { value: borderSize },
@@ -234,6 +238,8 @@ const ShapeBlur = ({
       ['x', 'y'].forEach(k => {
         vMouseDamp[k as 'x' | 'y'] = THREE.MathUtils.damp(vMouseDamp[k as 'x' | 'y'], vMouse[k as 'x' | 'y'], 8, dt);
       });
+      
+      material.uniforms.u_color.value.set(color);
 
       renderer.render(scene, camera);
       animationFrameId = requestAnimationFrame(update);
@@ -251,7 +257,7 @@ const ShapeBlur = ({
       }
       renderer.dispose();
     };
-  }, [variation, pixelRatioProp, shapeSize, roundness, borderSize, circleSize, circleEdge]);
+  }, [variation, pixelRatioProp, shapeSize, roundness, borderSize, circleSize, circleEdge, color]);
 
   return <div ref={mountRef} className={`w-full h-full ${className}`} />;
 };

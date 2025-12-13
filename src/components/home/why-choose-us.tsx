@@ -3,6 +3,10 @@ import { whyChooseUsItems } from "@/lib/data";
 import { MotionDiv } from "@/components/common/motion-components";
 import { Card, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import ShapeBlur from "../common/shape-blur";
+import resolveConfig from "tailwindcss/resolveConfig";
+import tailwindConfig from "../../../tailwind.config";
+
+const fullConfig = resolveConfig(tailwindConfig);
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -28,6 +32,14 @@ const itemVariants = {
 };
 
 export default function WhyChooseUs() {
+  const primaryColor = fullConfig.theme.colors.primary.DEFAULT.replace(
+    /hsl\(([^)]+)\)/,
+    (match, hsl) => {
+      const [h, s, l] = hsl.split(" ").map(val => val.trim().replace('%', ''));
+      return `hsl(${h}, ${s}%, ${l}%)`;
+    }
+  );
+  
   return (
     <section className="py-20 md:py-28 bg-transparent">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
@@ -53,6 +65,7 @@ export default function WhyChooseUs() {
                     borderSize={0.02}
                     circleSize={0.3}
                     circleEdge={0.5}
+                    color={primaryColor}
                   />
                 </div>
                 <CardHeader className="relative items-center p-6 z-10">
