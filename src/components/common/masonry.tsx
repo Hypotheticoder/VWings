@@ -195,12 +195,14 @@ const Masonry = ({
         scale: hoverScale,
         zIndex: 10,
         duration: 0.3,
-        ease: 'power2.out'
+        ease: 'power2.out',
+        overwrite: 'auto'
       });
        gsap.to(`[data-key="${id}"] .overlay`, {
         opacity: 1,
         duration: 0.3,
-        ease: 'power2.out'
+        ease: 'power2.out',
+        overwrite: 'auto'
       });
     }
   };
@@ -211,12 +213,14 @@ const Masonry = ({
         scale: 1,
         zIndex: 1,
         duration: 0.3,
-        ease: 'power2.out'
+        ease: 'power2.out',
+        overwrite: 'auto'
       });
       gsap.to(`[data-key="${id}"] .overlay`, {
         opacity: 0,
         duration: 0.3,
-        ease: 'power2.out'
+        ease: 'power2.out',
+        overwrite: 'auto'
       });
     }
   };
