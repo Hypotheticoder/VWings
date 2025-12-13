@@ -30,7 +30,7 @@ export default function HeroSection() {
     const heroImage = PlaceHolderImages.find(img => img.id === 'hero-background');
 
   return (
-    <section className="relative h-[90vh] min-h-[700px] w-full overflow-hidden bg-gradient-to-br from-background via-background/80 to-primary-foreground/30">
+    <section className="relative h-[90vh] min-h-[700px] w-full overflow-hidden bg-gradient-to-br from-background via-background/80 to-primary/10">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 h-full">
         <div className="grid lg:grid-cols-2 gap-8 items-center h-full">
             <MotionDiv
