@@ -113,7 +113,7 @@ export default function TrainingRecommendation() {
                 <CheckCircle2 className="h-8 w-8 text-green-500" />
                 <h3 className="font-headline text-2xl text-green-400">Your Recommended Path</h3>
               </div>
-              <div className="prose prose-invert max-w-none text-muted-foreground whitespace-pre-wrap">
+              <div className="prose max-w-none text-muted-foreground whitespace-pre-wrap">
                 <p>{state.recommendation}</p>
               </div>
             </MotionDiv>

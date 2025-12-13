@@ -7,8 +7,8 @@
     --background: 263 78% 22%; /* #370E62 */
     --foreground: 0 0% 98%; /* #FAFAFA */
 
-    --card: 263 78% 26%;
-    --card-foreground: 0 0% 98%;
+    --card: 0 0% 100%;
+    --card-foreground: 263 78% 12%;
 
     --popover: 263 78% 18%;
     --popover-foreground: 0 0% 98%;
@@ -38,8 +38,8 @@
   .dark {
     --background: 263 78% 22%; /* #370E62 */
     --foreground: 0 0% 98%;
-    --card: 263 78% 26%;
-    --card-foreground: 0 0% 98%;
+    --card: 0 0% 100%;
+    --card-foreground: 263 78% 12%;
     --popover: 263 78% 18%;
     --popover-foreground: 0 0% 98%;
     --primary: 46 100% 48%; /* #F5C300 */
