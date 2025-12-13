@@ -1,14 +1,9 @@
 import Image from "next/image";
 import SectionHeading from "@/components/common/section-heading";
 import AnimatedCounter from "@/components/common/animated-counter";
-import { placementStats, airlineLogos } from "@/lib/data";
+import { placementStats } from "@/lib/data";
 import { MotionDiv } from "@/components/common/motion-components";
-import {
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-} from "@/components/ui/carousel";
-import Autoplay from "embla-carousel-autoplay";
+import AirlineCarousel from "./airline-carousel";
 
 export default function PlacementHighlights() {
   return (
@@ -44,37 +39,7 @@ export default function PlacementHighlights() {
             <p className="mt-2 text-muted-foreground text-lg">Years of Excellence</p>
           </MotionDiv>
         </MotionDiv>
-
-        <div className="relative">
-          <Carousel
-            opts={{
-              align: "start",
-              loop: true,
-            }}
-            plugins={[
-              Autoplay({
-                delay: 2000,
-                stopOnInteraction: false,
-              }),
-            ]}
-            className="w-full"
-          >
-            <CarouselContent>
-              {airlineLogos.map((logo, index) => (
-                <CarouselItem key={index} className="basis-1/2 sm:basis-1/3 md:basis-1/4 lg:basis-1/5 flex items-center justify-center">
-                  <Image
-                    src={logo.imageUrl}
-                    alt={logo.description}
-                    data-ai-hint={logo.imageHint}
-                    width={150}
-                    height={75}
-                    className="object-contain"
-                  />
-                </CarouselItem>
-              ))}
-            </CarouselContent>
-          </Carousel>
-        </div>
+        <AirlineCarousel />
       </div>
     </section>
   );
