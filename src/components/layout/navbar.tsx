@@ -42,12 +42,15 @@ export default function Navbar() {
       initial={{ y: -120 }}
       animate={{ y: 0 }}
       transition={{ type: "spring", stiffness: 50, delay: 0.5 }}
-      className="fixed top-4 left-0 right-0 w-full z-50"
+      className={cn(
+        "fixed top-0 left-0 right-0 w-full z-50 transition-all duration-300",
+        isScrolled ? "py-2" : "py-4"
+      )}
     >
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
             <div className={cn(
-                "relative flex items-center justify-between h-20 transition-all duration-300 rounded-xl px-6",
-                isScrolled || isMenuOpen ? "bg-card/70 shadow-lg backdrop-blur-xl border border-white/10" : "bg-transparent"
+                "relative flex items-center justify-between h-16 transition-all duration-300 rounded-xl px-4",
+                "bg-card/30 shadow-lg backdrop-blur-xl border border-white/10"
              )}>
 
                 <Link href="/" className="flex items-center gap-2 text-xl font-bold text-primary">
@@ -55,31 +58,31 @@ export default function Navbar() {
                     <span className="font-headline text-2xl">Elevate Aviation</span>
                 </Link>
 
-                <nav className="hidden md:flex items-center space-x-2 bg-card/50 border border-white/10 rounded-full px-4 py-2">
-                    {navLinks.map((link) => (
-                    <Link
-                        key={link.href}
-                        href={link.href}
-                        className={cn(
-                        "relative text-sm font-medium transition-colors hover:text-primary px-4 py-2 rounded-full",
-                        pathname === link.href ? "text-primary" : "text-foreground"
-                        )}
-                    >
-                        {link.label}
-                        {pathname === link.href && (
-                        <motion.div
-                            className="absolute inset-0 bg-primary/10 rounded-full"
-                            layoutId="underline"
-                        />
-                        )}
-                    </Link>
-                    ))}
-                </nav>
-                
-                <div className="hidden md:block">
-                    <Button asChild>
-                    <Link href="/admissions">Apply Now</Link>
-                    </Button>
+                <div className="hidden md:flex items-center gap-4">
+                  <nav className="flex items-center gap-2">
+                      {navLinks.map((link) => (
+                      <Link
+                          key={link.href}
+                          href={link.href}
+                          className={cn(
+                          "relative text-sm font-medium transition-colors hover:text-primary px-4 py-2 rounded-full",
+                          pathname === link.href ? "text-primary" : "text-foreground"
+                          )}
+                      >
+                          {link.label}
+                          {pathname === link.href && (
+                          <motion.div
+                              className="absolute inset-0 bg-primary/10 rounded-full -z-10"
+                              layoutId="active-nav-link"
+                          />
+                          )}
+                      </Link>
+                      ))}
+                  </nav>
+                  
+                  <Button asChild>
+                  <Link href="/admissions">Apply Now</Link>
+                  </Button>
                 </div>
 
                 <div className="md:hidden">
@@ -96,7 +99,7 @@ export default function Navbar() {
             animate="visible"
             exit="hidden"
             variants={menuVariants}
-            className="md:hidden mt-2 mx-4 rounded-xl bg-card/90 backdrop-blur-lg"
+            className="md:hidden mt-2 mx-4 rounded-xl bg-card/90 backdrop-blur-lg border border-white/10"
           >
             <nav className="flex flex-col items-center space-y-4 py-8">
               {navLinks.map((link) => (
