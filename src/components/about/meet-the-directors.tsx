@@ -5,6 +5,13 @@ import ScrollStack, { ScrollStackItem } from "@/components/common/scroll-stack";
 import SectionHeading from "@/components/common/section-heading";
 import { directors } from "@/lib/data";
 import Image from "next/image";
+import { cn } from "@/lib/utils";
+
+const cardColors = [
+    "bg-violet-600",
+    "bg-pink-500",
+    "bg-blue-500",
+];
 
 export default function MeetTheDirectors() {
   const [isClient, setIsClient] = useState(false);
@@ -34,11 +41,17 @@ export default function MeetTheDirectors() {
                 subtitle="The Visionaries Behind Elevate"
             />
         </div>
-        <ScrollStack useWindowScroll={true} itemDistance={-50} itemStackDistance={20} >
+        <ScrollStack useWindowScroll={true} itemDistance={-150} itemStackDistance={20} baseScale={0.9} >
             {directors.map((director, index) => (
-                <ScrollStackItem key={index} itemClassName="bg-card/80 backdrop-blur-xl border border-primary/20">
+                <ScrollStackItem 
+                    key={index} 
+                    itemClassName={cn(
+                        "text-white",
+                        cardColors[index % cardColors.length]
+                    )}
+                >
                    <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12 items-center h-full">
-                        <div className="relative w-full h-80 md:h-[22rem] rounded-2xl overflow-hidden">
+                        <div className="relative w-full h-80 md:h-full rounded-2xl overflow-hidden">
                            <Image
                                 src={director.image.imageUrl}
                                 alt={`Portrait of ${director.name}`}
@@ -48,9 +61,9 @@ export default function MeetTheDirectors() {
                             />
                         </div>
                         <div className="md:col-span-2 text-left">
-                            <h3 className="font-headline text-3xl font-bold text-primary">{director.name}</h3>
-                            <p className="text-lg font-semibold text-foreground/80 mb-4">{director.title}</p>
-                            <p className="text-foreground/90 max-w-2xl">{director.bio}</p>
+                            <h3 className="font-headline text-3xl font-bold text-white/90">{director.name}</h3>
+                            <p className="text-lg font-semibold text-white/70 mb-4">{director.title}</p>
+                            <p className="text-white/80 max-w-2xl">{director.bio}</p>
                         </div>
                    </div>
                 </ScrollStackItem>

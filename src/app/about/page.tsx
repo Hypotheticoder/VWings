@@ -47,7 +47,7 @@ export default function AboutPage() {
         </MotionDiv>
       </div>
       <MeetTheDirectors />
-      <div className="mt-20">
+       <div className="mt-20">
         <WhyChooseUs />
       </div>
        <div className="mt-0">

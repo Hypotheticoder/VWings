@@ -332,7 +332,7 @@ const ScrollStack: FC<ScrollStackProps> = ({
         ref={scrollerRef}
         style={containerStyles}
       >
-        <div className="scroll-stack-inner pt-[20vh] px-4 md:px-20 pb-[50rem] min-h-screen">
+        <div className="scroll-stack-inner pt-[20vh] px-4 md:px-20 pb-[50vh] min-h-screen">
           {children}
           <div className="scroll-stack-end w-full h-px" />
         </div>
