@@ -36,24 +36,32 @@
   }
 
   .dark {
-    --background: 263 78% 22%; /* #370E62 */
+    --background: 263 78% 12%;
     --foreground: 0 0% 98%;
-    --card: 0 0% 100%;
-    --card-foreground: 263 78% 12%;
+    
+    --card: 263 78% 12%;
+    --card-foreground: 0 0% 98%;
+    
     --popover: 263 78% 18%;
     --popover-foreground: 0 0% 98%;
+    
     --primary: 46 100% 48%; /* #F5C300 */
     --primary-foreground: 263 78% 12%;
+    
     --secondary: 320 100% 36%; /* #B6007D */
     --secondary-foreground: 0 0% 98%;
-    --muted: 263 78% 32%;
+
+    --muted: 263 78% 22%;
     --muted-foreground: 0 0% 63.9%;
-    --accent: 320 100% 36%; /* #B6007D */
+    
+    --accent: 320 100% 36%;
     --accent-foreground: 0 0% 98%;
+    
     --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 0 0% 98%;
-    --border: 320 100% 46%;
-    --input: 320 100% 46%;
+    
+    --border: 263 78% 28%;
+    --input: 263 78% 20%;
     --ring: 46 100% 48%;
   }
 }
@@ -64,5 +72,7 @@
   }
   body {
     @apply bg-background text-foreground;
+    background-image: radial-gradient(circle at top right, hsl(var(--primary) / 0.1), transparent 40%), radial-gradient(circle at bottom left, hsl(var(--secondary) / 0.1), transparent 50%);
+    background-attachment: fixed;
   }
 }

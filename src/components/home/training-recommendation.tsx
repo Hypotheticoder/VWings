@@ -1,6 +1,6 @@
 "use client";
 
-import { useActionState } from "react";
+import { useActionState, use } from "react";
 import { getTrainingRecommendation, type RecommendationState } from "@/app/actions";
 import SectionHeading from "@/components/common/section-heading";
 import { Button } from "@/components/ui/button";
@@ -44,13 +44,13 @@ export default function TrainingRecommendation() {
   const [state, dispatch] = useActionState(getTrainingRecommendation, initialState);
 
   return (
-    <section className="py-20 md:py-28 bg-background">
+    <section className="py-20 md:py-28 bg-transparent">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <SectionHeading
           title="Find Your Perfect Path"
           subtitle="Personalized AI-Powered Recommendations"
         />
-        <Card className="max-w-4xl mx-auto bg-card border-primary/50 shadow-2xl shadow-primary/10">
+        <Card className="max-w-4xl mx-auto bg-card/50 backdrop-blur-xl border-primary/50 shadow-2xl shadow-primary/10">
           <form action={dispatch}>
             <CardHeader>
               <CardTitle className="font-headline text-3xl">Your Aviation Future</CardTitle>
@@ -63,7 +63,7 @@ export default function TrainingRecommendation() {
                   id="careerGoals"
                   name="careerGoals"
                   placeholder="e.g., 'I want to become a commercial airline pilot flying long-haul international routes.'"
-                  className="min-h-[100px]"
+                  className="min-h-[100px] bg-card/80"
                   required
                 />
                 {state.errors?.careerGoals && (
@@ -113,7 +113,7 @@ export default function TrainingRecommendation() {
                 <CheckCircle2 className="h-8 w-8 text-green-500" />
                 <h3 className="font-headline text-2xl text-green-400">Your Recommended Path</h3>
               </div>
-              <div className="prose max-w-none text-muted-foreground whitespace-pre-wrap">
+              <div className="prose prose-invert max-w-none text-card-foreground/90 whitespace-pre-wrap">
                 <p>{state.recommendation}</p>
               </div>
             </MotionDiv>

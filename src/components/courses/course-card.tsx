@@ -16,10 +16,11 @@ type CourseCardProps = {
 };
 
 const itemVariants = {
-  hidden: { opacity: 0, y: 50 },
+  hidden: { opacity: 0, y: 50, scale: 0.9 },
   visible: {
     opacity: 1,
     y: 0,
+    scale: 1,
     transition: {
       duration: 0.5,
       ease: "easeOut",
@@ -33,7 +34,7 @@ export default function CourseCard({ course }: CourseCardProps) {
       variants={itemVariants}
       className="h-full"
     >
-      <Card className="h-full flex flex-col overflow-hidden bg-card border-accent/20 transition-all duration-300 hover:border-primary hover:shadow-2xl hover:shadow-primary/10 transform hover:-translate-y-2">
+      <Card className="h-full flex flex-col overflow-hidden bg-card/50 backdrop-blur-xl border-primary/20 transition-all duration-300 hover:border-primary hover:shadow-2xl hover:shadow-primary/10 transform hover:-translate-y-2">
         <div className="relative w-full h-48">
           <Image
             src={course.image.imageUrl}
@@ -45,10 +46,10 @@ export default function CourseCard({ course }: CourseCardProps) {
         </div>
         <CardHeader>
           <CardTitle className="font-headline text-2xl">{course.title}</CardTitle>
-          <CardDescription className="pt-2 text-muted-foreground">{course.description}</CardDescription>
+          <CardDescription className="pt-2 text-card-foreground/80">{course.description}</CardDescription>
         </CardHeader>
         <CardFooter className="mt-auto">
-          <Button variant="ghost" className="text-primary hover:text-primary" asChild>
+          <Button variant="link" className="text-primary hover:text-primary" asChild>
             <Link href={`/courses#${course.id}`}>
               Learn More <ArrowRight className="ml-2 h-4 w-4" />
             </Link>

@@ -43,8 +43,8 @@ export default function Navbar() {
       animate={{ y: 0 }}
       transition={{ type: "spring", stiffness: 50, delay: 0.5 }}
       className={cn(
-        "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
-        isScrolled || isMenuOpen ? "bg-background/80 shadow-lg backdrop-blur-lg" : "bg-transparent"
+        "fixed top-4 left-1/2 -translate-x-1/2 w-[95%] max-w-7xl z-50 transition-all duration-300 rounded-xl",
+        isScrolled || isMenuOpen ? "bg-background/80 shadow-lg backdrop-blur-lg border border-white/10" : "bg-transparent"
       )}
     >
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">

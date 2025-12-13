@@ -14,10 +14,11 @@ const containerVariants = {
 };
 
 const itemVariants = {
-  hidden: { opacity: 0, y: 50 },
+  hidden: { opacity: 0, y: 50, scale: 0.9 },
   visible: {
     opacity: 1,
     y: 0,
+    scale: 1,
     transition: {
       duration: 0.5,
       ease: "easeOut",
@@ -27,7 +28,7 @@ const itemVariants = {
 
 export default function WhyChooseUs() {
   return (
-    <section className="py-20 md:py-28 bg-background">
+    <section className="py-20 md:py-28 bg-transparent">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <SectionHeading
           title="The Elevate Advantage"
@@ -42,13 +43,13 @@ export default function WhyChooseUs() {
         >
           {whyChooseUsItems.map((item, index) => (
             <MotionDiv key={index} variants={itemVariants}>
-              <Card className="h-full text-center bg-card border-accent/20 hover:border-primary hover:shadow-2xl hover:shadow-primary/10 transition-all duration-300 transform hover:-translate-y-2">
-                <CardHeader className="items-center">
-                  <div className="p-4 bg-accent/20 rounded-full mb-4">
+              <Card className="h-full text-center bg-card/50 backdrop-blur-xl border-primary/20 hover:border-primary hover:shadow-2xl hover:shadow-primary/10 transition-all duration-300 transform hover:-translate-y-2">
+                <CardHeader className="items-center p-6">
+                  <div className="p-4 bg-primary/10 rounded-full mb-4">
                      <item.icon className="h-8 w-8 text-primary" />
                   </div>
                   <CardTitle className="font-headline text-2xl">{item.title}</CardTitle>
-                  <CardDescription className="pt-2 text-muted-foreground">{item.description}</CardDescription>
+                  <CardDescription className="pt-2 text-card-foreground/80">{item.description}</CardDescription>
                 </CardHeader>
               </Card>
             </MotionDiv>

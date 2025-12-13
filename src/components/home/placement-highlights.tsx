@@ -6,7 +6,7 @@ import AirlineCarousel from "./airline-carousel";
 
 export default function PlacementHighlights() {
   return (
-    <section className="py-20 md:py-28 bg-white text-foreground">
+    <section className="py-20 md:py-28 bg-transparent text-foreground">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <SectionHeading
           title="Launching Careers Sky-High"
@@ -23,19 +23,19 @@ export default function PlacementHighlights() {
             <h3 className="font-headline text-5xl md:text-6xl text-primary font-bold">
               <AnimatedCounter end={placementStats.pilotsPlaced} />+
             </h3>
-            <p className="mt-2 text-muted-foreground text-lg">Pilots Placed</p>
+            <p className="mt-2 text-foreground/80 text-lg">Pilots Placed</p>
           </MotionDiv>
           <MotionDiv initial={{ opacity: 0, y:20 }} whileInView={{ opacity: 1, y:0 }} viewport={{ once: true }} transition={{delay:0.2}}>
             <h3 className="font-headline text-5xl md:text-6xl text-primary font-bold">
               <AnimatedCounter end={placementStats.partnerAirlines} />+
             </h3>
-            <p className="mt-2 text-muted-foreground text-lg">Partner Airlines</p>
+            <p className="mt-2 text-foreground/80 text-lg">Partner Airlines</p>
           </MotionDiv>
           <MotionDiv initial={{ opacity: 0, y:20 }} whileInView={{ opacity: 1, y:0 }} viewport={{ once: true }} transition={{delay:0.4}}>
             <h3 className="font-headline text-5xl md:text-6xl text-primary font-bold">
               <AnimatedCounter end={placementStats.yearsOfExcellence} />
             </h3>
-            <p className="mt-2 text-muted-foreground text-lg">Years of Excellence</p>
+            <p className="mt-2 text-foreground/80 text-lg">Years of Excellence</p>
           </MotionDiv>
         </MotionDiv>
         <AirlineCarousel />
