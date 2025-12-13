@@ -19,7 +19,7 @@ const itemVariants = {
 
 export default function TrainingTimeline() {
   return (
-    <section className="py-20 md:py-28 bg-card">
+    <section className="py-20 md:py-28 bg-white text-foreground">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <SectionHeading
           title="Your Journey to Command"
@@ -59,14 +59,14 @@ export default function TrainingTimeline() {
                   "hidden md:block relative",
                    index % 2 === 0 ? "col-start-2" : "col-start-2"
                 )}>
-                  <div className="w-20 h-20 rounded-full bg-background flex items-center justify-center border-2 border-accent">
+                  <div className="w-20 h-20 rounded-full bg-card flex items-center justify-center border-2 border-accent">
                     <step.icon className="w-10 h-10 text-primary" />
                   </div>
                 </div>
 
                 {/* Mobile Icon */}
                  <div className="md:hidden flex items-center gap-4 mt-4">
-                  <div className="w-12 h-12 rounded-full bg-background flex items-center justify-center border-2 border-accent shrink-0">
+                  <div className="w-12 h-12 rounded-full bg-card flex items-center justify-center border-2 border-accent shrink-0">
                     <step.icon className="w-6 h-6 text-primary" />
                   </div>
                    <div className="w-full h-px bg-accent/20"></div>
