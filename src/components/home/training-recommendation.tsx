@@ -1,11 +1,10 @@
 "use client";
 
-import { useFormState, useFormStatus } from "react-dom";
+import { useActionState } from "react";
 import { getTrainingRecommendation, type RecommendationState } from "@/app/actions";
 import SectionHeading from "@/components/common/section-heading";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
-import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Textarea } from "@/components/ui/textarea";
@@ -13,6 +12,7 @@ import Lottie from "lottie-react";
 import planeAnimation from "../../../public/lottie/plane-animation.json";
 import { MotionDiv } from "../common/motion-components";
 import { AlertCircle, CheckCircle2 } from "lucide-react";
+import { useFormStatus } from "react-dom";
 
 function SubmitButton() {
   const { pending } = useFormStatus();
@@ -23,9 +23,25 @@ function SubmitButton() {
   );
 }
 
+function LoadingIndicator() {
+    const { pending } = useFormStatus();
+    if (!pending) return null;
+
+    return (
+        <MotionDiv
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            className="p-6 flex flex-col items-center justify-center text-center"
+        >
+            <Lottie animationData={planeAnimation} className="w-40 h-40" />
+            <p className="text-lg font-medium text-primary mt-4">Our experts are charting your course...</p>
+        </MotionDiv>
+    );
+}
+
 export default function TrainingRecommendation() {
   const initialState: RecommendationState = {};
-  const [state, dispatch] = useFormState(getTrainingRecommendation, initialState);
+  const [state, dispatch] = useActionState(getTrainingRecommendation, initialState);
 
   return (
     <section className="py-20 md:py-28 bg-background">
@@ -84,18 +100,8 @@ export default function TrainingRecommendation() {
                 </div>
               )}
             </CardFooter>
+            <LoadingIndicator />
           </form>
-
-          {useFormStatus().pending && (
-            <MotionDiv
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              className="p-6 flex flex-col items-center justify-center text-center"
-            >
-              <Lottie animationData={planeAnimation} className="w-40 h-40" />
-              <p className="text-lg font-medium text-primary mt-4">Our experts are charting your course...</p>
-            </MotionDiv>
-          )}
 
           {state.recommendation && (
             <MotionDiv
