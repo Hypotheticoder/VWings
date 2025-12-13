@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { Plane, Menu, X } from "lucide-react";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { usePathname } from "next/navigation";
 
@@ -11,17 +11,8 @@ import { navLinks } from "@/lib/data";
 import { Button } from "@/components/ui/button";
 
 export default function Navbar() {
-  const [isScrolled, setIsScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const pathname = usePathname();
-
-  useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 10);
-    };
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -39,9 +30,11 @@ export default function Navbar() {
 
   return (
     <motion.header
+      initial={{ y: -100 }}
+      animate={{ y: 0 }}
+      transition={{ type: "spring", stiffness: 50, delay: 0.5 }}
       className={cn(
-        "fixed top-0 left-0 right-0 z-50 transition-colors duration-300",
-        isScrolled ? "bg-background/80 backdrop-blur-sm border-b border-white/10" : "bg-transparent"
+        "fixed top-4 left-4 right-4 z-50 rounded-2xl border border-white/10 bg-background/50 shadow-lg backdrop-blur-lg"
       )}
     >
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
@@ -92,7 +85,7 @@ export default function Navbar() {
             animate="visible"
             exit="hidden"
             variants={menuVariants}
-            className="md:hidden bg-background/95 backdrop-blur-sm"
+            className="md:hidden bg-transparent"
           >
             <nav className="flex flex-col items-center space-y-4 py-8">
               {navLinks.map((link) => (
