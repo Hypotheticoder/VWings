@@ -42,52 +42,53 @@ export default function Navbar() {
       initial={{ y: -120 }}
       animate={{ y: 0 }}
       transition={{ type: "spring", stiffness: 50, delay: 0.5 }}
-      className={cn(
-        "fixed top-4 left-0 right-0 w-[95%] max-w-7xl mx-auto z-50 transition-all duration-300 rounded-xl",
-        isScrolled || isMenuOpen ? "bg-background/80 shadow-lg backdrop-blur-lg border border-white/10" : "bg-transparent"
-      )}
+      className="fixed top-4 left-0 right-0 w-full z-50"
     >
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-20">
-          <Link href="/" className="flex items-center gap-2 text-xl font-bold text-primary">
-            <Plane className="h-8 w-8" />
-            <span className="font-headline text-2xl">Elevate Aviation</span>
-          </Link>
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div className={cn(
+                "relative flex items-center justify-between h-20 transition-all duration-300 rounded-xl px-6",
+                isScrolled || isMenuOpen ? "bg-card/70 shadow-lg backdrop-blur-xl border border-white/10" : "bg-transparent"
+             )}>
 
-          <nav className="hidden md:flex items-center space-x-8">
-            {navLinks.map((link) => (
-              <Link
-                key={link.href}
-                href={link.href}
-                className={cn(
-                  "relative text-sm font-medium transition-colors hover:text-primary",
-                  pathname === link.href ? "text-primary" : "text-foreground"
-                )}
-              >
-                {link.label}
-                {pathname === link.href && (
-                  <motion.div
-                    className="absolute -bottom-2 left-0 right-0 h-0.5 bg-primary"
-                    layoutId="underline"
-                  />
-                )}
-              </Link>
-            ))}
-          </nav>
-          
-          <div className="hidden md:block">
-            <Button asChild>
-              <Link href="/admissions">Apply Now</Link>
-            </Button>
-          </div>
+                <Link href="/" className="flex items-center gap-2 text-xl font-bold text-primary">
+                    <Plane className="h-8 w-8" />
+                    <span className="font-headline text-2xl">Elevate Aviation</span>
+                </Link>
 
-          <div className="md:hidden">
-            <Button variant="ghost" size="icon" onClick={toggleMenu}>
-              {isMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
-            </Button>
-          </div>
+                <nav className="hidden md:flex items-center space-x-2 bg-card/50 border border-white/10 rounded-full px-4 py-2">
+                    {navLinks.map((link) => (
+                    <Link
+                        key={link.href}
+                        href={link.href}
+                        className={cn(
+                        "relative text-sm font-medium transition-colors hover:text-primary px-4 py-2 rounded-full",
+                        pathname === link.href ? "text-primary" : "text-foreground"
+                        )}
+                    >
+                        {link.label}
+                        {pathname === link.href && (
+                        <motion.div
+                            className="absolute inset-0 bg-primary/10 rounded-full"
+                            layoutId="underline"
+                        />
+                        )}
+                    </Link>
+                    ))}
+                </nav>
+                
+                <div className="hidden md:block">
+                    <Button asChild>
+                    <Link href="/admissions">Apply Now</Link>
+                    </Button>
+                </div>
+
+                <div className="md:hidden">
+                    <Button variant="ghost" size="icon" onClick={toggleMenu}>
+                    {isMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+                    </Button>
+                </div>
+            </div>
         </div>
-      </div>
       <AnimatePresence>
         {isMenuOpen && (
           <motion.div
@@ -95,7 +96,7 @@ export default function Navbar() {
             animate="visible"
             exit="hidden"
             variants={menuVariants}
-            className="md:hidden bg-background/90"
+            className="md:hidden mt-2 mx-4 rounded-xl bg-card/90 backdrop-blur-lg"
           >
             <nav className="flex flex-col items-center space-y-4 py-8">
               {navLinks.map((link) => (
