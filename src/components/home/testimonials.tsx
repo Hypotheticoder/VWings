@@ -16,7 +16,7 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
 export default function Testimonials() {
   return (
-    <section className="py-20 md:py-28 bg-card">
+    <section className="py-20 md:py-28 bg-background">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <SectionHeading
           title="Voices of Our Graduates"
@@ -39,8 +39,8 @@ export default function Testimonials() {
               {testimonials.map((testimonial, index) => (
                 <CarouselItem key={index}>
                   <div className="p-1">
-                    <Card className="bg-background border-accent/20">
-                      <CardContent className="flex flex-col items-center justify-center p-8 text-center">
+                    <Card className="bg-card border-accent/20">
+                      <CardContent className="flex flex-col items-center justify-center p-8 text-center text-card-foreground">
                         <Avatar className="w-24 h-24 mb-6 border-4 border-primary">
                           <AvatarImage 
                             src={testimonial.image.imageUrl} 
@@ -49,11 +49,11 @@ export default function Testimonials() {
                           />
                           <AvatarFallback>{testimonial.name.charAt(0)}</AvatarFallback>
                         </Avatar>
-                        <blockquote className="text-lg md:text-xl font-medium text-foreground mb-4">
+                        <blockquote className="text-lg md:text-xl font-medium mb-4">
                           "{testimonial.quote}"
                         </blockquote>
                         <p className="font-headline text-xl font-bold text-primary">{testimonial.name}</p>
-                        <p className="text-sm text-muted-foreground">{testimonial.role}</p>
+                        <p className="text-sm opacity-80">{testimonial.role}</p>
                       </CardContent>
                     </Card>
                   </div>
