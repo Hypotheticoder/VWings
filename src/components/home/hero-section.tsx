@@ -1,6 +1,9 @@
 import Link from "next/link";
+import Image from "next/image";
 import { MotionDiv, MotionH1 } from "@/components/common/motion-components";
 import { Button } from "@/components/ui/button";
+import { PlaceHolderImages } from "@/lib/placeholder-images";
+import { ArrowRight } from "lucide-react";
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -8,38 +11,39 @@ const containerVariants = {
     opacity: 1,
     transition: {
       staggerChildren: 0.3,
+      delayChildren: 0.2,
     },
   },
 };
 
 const itemVariants = {
-  hidden: { opacity: 0, y: 20 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: "easeOut" } },
+  hidden: { opacity: 0, x: -50 },
+  visible: { opacity: 1, x: 0, transition: { duration: 0.8, ease: "easeOut" } },
 };
 
 export default function HeroSection() {
-  return (
-    <section className="relative h-screen w-full overflow-hidden">
-      {/* Video Background */}
-      <video
-        autoPlay
-        loop
-        muted
-        playsInline
-        className="absolute top-0 left-0 w-full h-full object-cover z-0"
-        // It's recommended to host your own video. This is a placeholder.
-        src="https://videos.pexels.com/video-files/3844645/3844645-hd_1920_1080_25fps.mp4"
-      />
-      {/* Overlay */}
-      <div className="absolute top-0 left-0 w-full h-full bg-black/60 z-10" />
+    const heroImage = PlaceHolderImages.find(img => img.id === 'hero-background');
 
-      {/* Content */}
-      <div className="relative z-20 flex flex-col items-center justify-center h-full text-center text-white px-4">
+  return (
+    <section className="relative h-[90vh] min-h-[600px] w-full overflow-hidden flex items-center bg-background">
+      {heroImage && (
+        <Image
+            src={heroImage.imageUrl}
+            alt={heroImage.description}
+            data-ai-hint={heroImage.imageHint}
+            fill
+            className="object-cover z-0"
+            priority
+        />
+      )}
+      <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/50 to-transparent z-10" />
+
+      <div className="container relative z-20 mx-auto px-4 sm:px-6 lg:px-8">
         <MotionDiv
           variants={containerVariants}
           initial="hidden"
           animate="visible"
-          className="flex flex-col items-center"
+          className="max-w-2xl text-left text-white"
         >
           <MotionH1
             variants={itemVariants}
@@ -50,10 +54,10 @@ export default function HeroSection() {
           </MotionH1>
           <MotionDiv
             variants={itemVariants}
-            className="mt-6 max-w-2xl text-lg md:text-xl text-foreground/80"
+            className="mt-6 max-w-xl text-lg md:text-xl text-white/80"
           >
             <p>
-              Join the elite ranks of aviation professionals with our world-class training programs.
+              Join the elite ranks of aviation professionals with our world-class training programs, designed to elevate your career from the ground up.
             </p>
           </MotionDiv>
           <MotionDiv
@@ -61,7 +65,9 @@ export default function HeroSection() {
             className="mt-10 flex flex-col sm:flex-row gap-4"
           >
             <Button size="lg" asChild>
-              <Link href="/courses">Explore Courses</Link>
+              <Link href="/courses">
+                Explore Courses <ArrowRight className="ml-2" />
+              </Link>
             </Button>
             <Button size="lg" variant="outline" asChild>
               <Link href="/admissions">Apply Now</Link>

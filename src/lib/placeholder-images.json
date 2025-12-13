@@ -1,6 +1,12 @@
 {
   "placeholderImages": [
     {
+      "id": "hero-background",
+      "description": "Pilot in a modern airplane cockpit, looking out at the sky.",
+      "imageUrl": "https://images.unsplash.com/photo-1611099144485-70538875e13a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHxwaWxvdCUyMGluJTIwY29ja3BpdHxlbnwwfHx8fDE3NjU2NzM3MDl8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "pilot cockpit"
+    },
+    {
       "id": "course-ppl",
       "description": "A small aircraft in flight during sunset, representing a private pilot license course.",
       "imageUrl": "https://images.unsplash.com/photo-1703355686225-b9563387505a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxzbWFsbCUyMGFpcmNyYWZ0fGVufDB8fHx8MTc2NTY2MTA1OHww&ixlib=rb-4.1.0&q=80&w=1080",
