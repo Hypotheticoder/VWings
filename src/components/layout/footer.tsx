@@ -7,7 +7,7 @@ export default function Footer() {
     <footer className="relative mt-20">
       {/* Full-bleed purple background on large screens; contained on smaller screens */}
       <div className="w-full bg-gradient-to-tr from-[#3b0d66]/80 via-[#5b2b8a]/70 to-[#7a3bd2]/60 shadow-2xl backdrop-blur-xl border-t border-white/5">
-        <div className="mx-auto max-w-screen-xl -translate-y-10 lg:translate-y-0 lg:rounded-none rounded-2xl px-6 md:px-10 lg:px-16 py-10 md:py-14">
+        <div className="mx-auto max-w-screen-xl md:-translate-y-10 lg:translate-y-0 lg:rounded-none rounded-2xl px-6 md:px-10 lg:px-16 py-10 md:py-14 backdrop-blur-md bg-white/5">
           <div className="mx-auto max-w-7xl">
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
               <div className="flex flex-col items-start">

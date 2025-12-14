@@ -65,7 +65,7 @@ export default function WhyChooseUs() {
             <MotionDiv key={index} variants={itemVariants}>
               <Card className="relative overflow-hidden h-full text-center bg-card/60 backdrop-blur-xl border-primary/20 hover:border-primary hover:shadow-2xl hover:shadow-primary/10 transition-all duration-300 transform hover:-translate-y-2">
                 <div className="absolute inset-0 w-full h-full z-0 pointer-events-none">
-                  <ShapeBlur
+                  {/* <ShapeBlur
                     className="w-full h-full pointer-events-none"
                     variation={0}
                     shapeSize={2.1}
@@ -74,7 +74,7 @@ export default function WhyChooseUs() {
                     circleSize={0.34}
                     circleEdge={0.6}
                     color={primaryColor}
-                  />
+                  /> */}
                 </div>
                 <CardHeader className="relative items-center p-6 z-10">
                   <div className="inline-flex p-3 bg-primary/20 text-primary rounded-full mb-4 items-center justify-center">
