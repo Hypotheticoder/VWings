@@ -27,7 +27,7 @@ export default function TrainingTimeline() {
         />
         <div className="relative">
           {/* Vertical line */}
-          <div className="hidden md:block absolute left-1/2 -translate-x-1/2 h-full w-0.5 bg-primary/20" />
+          <div className="hidden md:block absolute left-1/2 -translate-x-1/2 top-8 bottom-8 w-0.5 bg-primary/20" />
 
           <MotionDiv
             className="space-y-16 md:space-y-0 md:grid md:gap-y-16"
@@ -40,7 +40,7 @@ export default function TrainingTimeline() {
               <MotionDiv
                 key={index}
                 className={cn(
-                  "relative md:grid md:grid-cols-[1fr_auto_1fr] md:items-center md:gap-x-8",
+                  "relative md:grid md:grid-cols-12 md:items-center md:gap-x-8 md:min-h-[140px]",
                   index % 2 !== 0 && ""
                 )}
                 variants={itemVariants}
@@ -48,8 +48,10 @@ export default function TrainingTimeline() {
                 {/* Content */}
                 <div
                   className={cn(
-                    "text-left md:text-right md:col-start-1",
-                    index % 2 !== 0 && "md:col-start-3 md:text-left"
+                    "text-left md:text-right md:col-span-5 md:flex md:flex-col md:justify-center px-1",
+                    index % 2 !== 0
+                      ? "md:col-start-8 md:text-left"
+                      : "md:col-start-1"
                   )}
                   style={{ minWidth: 0 }}
                 >
@@ -59,13 +61,9 @@ export default function TrainingTimeline() {
                   <p className="mt-2 text-foreground/80">{step.description}</p>
                 </div>
 
-                {/* Icon */}
-                <div
-                  className={cn(
-                    "hidden md:flex md:col-start-2 items-center justify-center relative z-10"
-                  )}
-                >
-                  <div className="w-20 h-20 rounded-full bg-background flex items-center justify-center border-2 border-primary/50 shadow-lg z-10">
+                {/* Icon (absolutely centered on timeline for consistent alignment) */}
+                <div className="hidden md:flex absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 items-center justify-center z-10">
+                  <div className="w-20 h-20 rounded-full bg-background flex items-center justify-center border-2 border-primary/50 shadow-xl z-10">
                     <step.icon className="w-10 h-10 text-primary" />
                   </div>
                 </div>

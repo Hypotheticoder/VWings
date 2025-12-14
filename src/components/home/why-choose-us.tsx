@@ -63,23 +63,24 @@ export default function WhyChooseUs() {
         >
           {whyChooseUsItems.map((item, index) => (
             <MotionDiv key={index} variants={itemVariants}>
-              <Card className="relative overflow-hidden h-full text-center bg-card/50 backdrop-blur-xl border-primary/20 hover:border-primary hover:shadow-2xl hover:shadow-primary/10 transition-all duration-300 transform hover:-translate-y-2">
-                <div className="absolute inset-0 w-full h-full z-0">
-                  {/* <ShapeBlur
+              <Card className="relative overflow-hidden h-full text-center bg-card/60 backdrop-blur-xl border-primary/20 hover:border-primary hover:shadow-2xl hover:shadow-primary/10 transition-all duration-300 transform hover:-translate-y-2">
+                <div className="absolute inset-0 w-full h-full z-0 pointer-events-none">
+                  <ShapeBlur
+                    className="w-full h-full pointer-events-none"
                     variation={0}
-                    shapeSize={0.9}
-                    roundness={0.2}
-                    borderSize={0.02}
-                    circleSize={0.3}
-                    circleEdge={0.5}
+                    shapeSize={2.1}
+                    roundness={0.22}
+                    borderSize={0.03}
+                    circleSize={0.34}
+                    circleEdge={0.6}
                     color={primaryColor}
-                  /> */}
+                  />
                 </div>
                 <CardHeader className="relative items-center p-6 z-10">
-                  <div className="p-4 bg-primary/10 rounded-full mb-4">
-                    <item.icon className="h-8 w-8 text-primary" />
+                  <div className="inline-flex p-3 bg-primary/20 text-primary rounded-full mb-4 items-center justify-center">
+                    <item.icon className="h-6 w-6" />
                   </div>
-                  <CardTitle className="font-headline text-2xl">
+                  <CardTitle className="font-headline text-2xl text-foreground">
                     {item.title}
                   </CardTitle>
                   <CardDescription className="pt-2 text-card-foreground/80">
