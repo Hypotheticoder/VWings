@@ -123,9 +123,7 @@ export default function Navbar() {
                     href={link.href}
                     className={cn(
                       "text-lg font-medium transition-colors hover:text-primary",
-                      pathname === link.href
-                        ? "text-primary"
-                        : "text-white"
+                      pathname === link.href ? "text-primary" : "text-white"
                     )}
                     onClick={() => setIsMenuOpen(false)}
                   >
@@ -135,7 +133,9 @@ export default function Navbar() {
               ))}
               <motion.div variants={menuItemVariants}>
                 <Button asChild>
-                  <Link href="/admissions" className="text-white">Apply Now</Link>
+                  <Link href="/admissions" className="text-white">
+                    Apply Now
+                  </Link>
                 </Button>
               </motion.div>
             </nav>
