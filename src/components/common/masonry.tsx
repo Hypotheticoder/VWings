@@ -1,7 +1,7 @@
 "use client";
 
-import { useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react';
-import { gsap } from 'gsap';
+import { useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
+import { gsap } from "gsap";
 
 type Item = {
   id: string;
@@ -20,16 +20,20 @@ type MasonryProps = {
   ease?: string;
   duration?: number;
   stagger?: number;
-  animateFrom?: 'top' | 'bottom' | 'left' | 'right' | 'center' | 'random';
+  animateFrom?: "top" | "bottom" | "left" | "right" | "center" | "random";
   scaleOnHover?: boolean;
   hoverScale?: number;
   blurToFocus?: boolean;
 };
 
-const useMedia = (queries: string[], values: number[], defaultValue: number) => {
+const useMedia = (
+  queries: string[],
+  values: number[],
+  defaultValue: number
+) => {
   const get = () => {
-    if (typeof window === 'undefined') return defaultValue;
-    const index = queries.findIndex(q => matchMedia(q).matches);
+    if (typeof window === "undefined") return defaultValue;
+    const index = queries.findIndex((q) => matchMedia(q).matches);
     return values[index] ?? defaultValue;
   };
 
@@ -37,8 +41,8 @@ const useMedia = (queries: string[], values: number[], defaultValue: number) => 
 
   useEffect(() => {
     const handler = () => setValue(get);
-    window.addEventListener('resize', handler);
-    return () => window.removeEventListener('resize', handler);
+    window.addEventListener("resize", handler);
+    return () => window.removeEventListener("resize", handler);
   }, []);
 
   return value;
@@ -64,8 +68,8 @@ const useMeasure = () => {
 const preloadImages = async (urls: string[]) => {
   await Promise.all(
     urls.map(
-      src =>
-        new Promise(resolve => {
+      (src) =>
+        new Promise((resolve) => {
           const img = new Image();
           img.src = src;
           img.onload = img.onerror = () => resolve(true);
@@ -76,16 +80,21 @@ const preloadImages = async (urls: string[]) => {
 
 const Masonry = ({
   items,
-  ease = 'power3.out',
+  ease = "power3.out",
   duration = 0.6,
   stagger = 0.05,
-  animateFrom = 'bottom',
+  animateFrom = "bottom",
   scaleOnHover = true,
   hoverScale = 1.05,
   blurToFocus = true,
 }: MasonryProps) => {
   const columns = useMedia(
-    ['(min-width:1500px)', '(min-width:1000px)', '(min-width:600px)', '(min-width:400px)'],
+    [
+      "(min-width:1500px)",
+      "(min-width:1000px)",
+      "(min-width:600px)",
+      "(min-width:400px)",
+    ],
     [5, 4, 3, 2],
     1
   );
@@ -98,24 +107,28 @@ const Masonry = ({
     if (!containerRect) return { x: item.x, y: item.y };
 
     let direction = animateFrom;
-    if (animateFrom === 'random') {
-      const dirs = ['top', 'bottom', 'left', 'right'];
-      direction = dirs[Math.floor(Math.random() * dirs.length)] as 'top' | 'bottom' | 'left' | 'right';
+    if (animateFrom === "random") {
+      const dirs = ["top", "bottom", "left", "right"];
+      direction = dirs[Math.floor(Math.random() * dirs.length)] as
+        | "top"
+        | "bottom"
+        | "left"
+        | "right";
     }
 
     switch (direction) {
-      case 'top':
+      case "top":
         return { x: item.x, y: -200 };
-      case 'bottom':
+      case "bottom":
         return { x: item.x, y: window.innerHeight + 200 };
-      case 'left':
+      case "left":
         return { x: -200, y: item.y };
-      case 'right':
+      case "right":
         return { x: window.innerWidth + 200, y: item.y };
-      case 'center':
+      case "center":
         return {
           x: containerRect.width / 2 - (item.w ?? 0) / 2,
-          y: containerRect.height / 2 - (item.h ?? 0) / 2
+          y: containerRect.height / 2 - (item.h ?? 0) / 2,
         };
       default:
         return { x: item.x, y: (item.y ?? 0) + 100 };
@@ -123,27 +136,28 @@ const Masonry = ({
   };
 
   useEffect(() => {
-    preloadImages(items.map(i => i.img)).then(() => setImagesReady(true));
+    preloadImages(items.map((i) => i.img)).then(() => setImagesReady(true));
   }, [items]);
 
   const { grid, containerHeight } = useMemo(() => {
-    if (!width) return {grid: [], containerHeight: 0};
+    if (!width) return { grid: [], containerHeight: 0 };
     const colHeights = new Array(columns).fill(0);
     const gap = 16;
     const totalGaps = (columns - 1) * gap;
     const columnWidth = (width - totalGaps) / columns;
 
-    const gridItems = items.map(child => {
+    const gridItems = items.map((child) => {
       const col = colHeights.indexOf(Math.min(...colHeights));
       const x = col * (columnWidth + gap);
-      const height = (child.height * columnWidth) / (child.width || columnWidth) ;
+      const height =
+        (child.height * columnWidth) / (child.width || columnWidth);
       const y = colHeights[col];
 
       colHeights[col] += height + gap;
       return { ...child, x, y, w: columnWidth, h: height };
     });
 
-    return {grid: gridItems, containerHeight: Math.max(...colHeights)};
+    return { grid: gridItems, containerHeight: Math.max(...colHeights) };
   }, [columns, items, width]);
 
   const hasMounted = useRef(false);
@@ -165,15 +179,15 @@ const Masonry = ({
             y: start.y,
             width: item.w,
             height: item.h,
-            ...(blurToFocus && { filter: 'blur(20px)' })
+            ...(blurToFocus && { filter: "blur(20px)" }),
           },
           {
             opacity: 1,
             ...animProps,
-            ...(blurToFocus && { filter: 'blur(0px)' }),
+            ...(blurToFocus && { filter: "blur(0px)" }),
             duration: 0.8,
-            ease: 'power3.out',
-            delay: index * stagger
+            ease: "power3.out",
+            delay: index * stagger,
           }
         );
       } else {
@@ -181,13 +195,22 @@ const Masonry = ({
           ...animProps,
           duration,
           ease,
-          overwrite: 'auto'
+          overwrite: "auto",
         });
       }
     });
 
     hasMounted.current = true;
-  }, [grid, imagesReady, stagger, animateFrom, blurToFocus, duration, ease, width]);
+  }, [
+    grid,
+    imagesReady,
+    stagger,
+    animateFrom,
+    blurToFocus,
+    duration,
+    ease,
+    width,
+  ]);
 
   const handleMouseEnter = (id: string) => {
     if (scaleOnHover) {
@@ -195,14 +218,14 @@ const Masonry = ({
         scale: hoverScale,
         zIndex: 10,
         duration: 0.3,
-        ease: 'power2.out',
-        overwrite: 'auto'
+        ease: "power2.out",
+        overwrite: "auto",
       });
-       gsap.to(`[data-key="${id}"] .overlay`, {
+      gsap.to(`[data-key="${id}"] .overlay`, {
         opacity: 1,
         duration: 0.3,
-        ease: 'power2.out',
-        overwrite: 'auto'
+        ease: "power2.out",
+        overwrite: "auto",
       });
     }
   };
@@ -213,27 +236,33 @@ const Masonry = ({
         scale: 1,
         zIndex: 1,
         duration: 0.3,
-        ease: 'power2.out',
-        overwrite: 'auto'
+        ease: "power2.out",
+        overwrite: "auto",
       });
       gsap.to(`[data-key="${id}"] .overlay`, {
         opacity: 0,
         duration: 0.3,
-        ease: 'power2.out',
-        overwrite: 'auto'
+        ease: "power2.out",
+        overwrite: "auto",
       });
     }
   };
 
   return (
-    <div ref={containerRef} className="relative w-full" style={{height: containerHeight}}>
-      {grid.map(item => (
+    <div
+      ref={containerRef}
+      className="relative w-full"
+      style={{ height: containerHeight }}
+    >
+      {grid.map((item) => (
         <div
           key={item.id}
           data-key={item.id}
           className="absolute box-content cursor-pointer"
-          style={{ willChange: 'transform, width, height, opacity' }}
-          onClick={() => item.url && window.open(item.url, '_blank', 'noopener')}
+          style={{ willChange: "transform, width, height, opacity" }}
+          onClick={() =>
+            item.url && window.open(item.url, "_blank", "noopener")
+          }
           onMouseEnter={() => handleMouseEnter(item.id)}
           onMouseLeave={() => handleMouseLeave(item.id)}
         >
@@ -241,8 +270,12 @@ const Masonry = ({
             className="relative w-full h-full rounded-lg shadow-lg overflow-hidden
                        bg-card/30 backdrop-blur-xl border border-white/10"
           >
-             <img src={item.img} alt="" className="absolute inset-0 w-full h-full object-cover"/>
-             <div className="overlay absolute inset-0 bg-black/50 opacity-0 transition-opacity duration-300"></div>
+            <img
+              src={item.img}
+              alt=""
+              className="absolute inset-0 w-full h-full object-cover"
+            />
+            <div className="overlay absolute inset-0 bg-black/50 opacity-0 transition-opacity duration-300"></div>
           </div>
         </div>
       ))}
