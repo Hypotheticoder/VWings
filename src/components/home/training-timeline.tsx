@@ -41,40 +41,44 @@ export default function TrainingTimeline() {
                 key={index}
                 className={cn(
                   "relative md:grid md:grid-cols-[1fr_auto_1fr] md:items-center md:gap-x-8",
-                  index % 2 !== 0 && "md:grid-cols-[1fr_auto_1fr]"
+                  index % 2 !== 0 && ""
                 )}
                 variants={itemVariants}
               >
                 {/* Content */}
-                <div className={cn(
-                  "text-left md:text-right",
-                  index % 2 !== 0 && "md:col-start-3 md:text-left"
-                )}>
-                  <h3 className="font-headline text-2xl font-bold text-primary">{step.title}</h3>
+                <div
+                  className={cn(
+                    "text-left md:text-right md:col-start-1",
+                    index % 2 !== 0 && "md:col-start-3 md:text-left"
+                  )}
+                  style={{ minWidth: 0 }}
+                >
+                  <h3 className="font-headline text-2xl font-bold text-primary">
+                    {step.title}
+                  </h3>
                   <p className="mt-2 text-foreground/80">{step.description}</p>
                 </div>
 
                 {/* Icon */}
-                <div className={cn(
-                  "hidden md:block relative",
-                   index % 2 === 0 ? "col-start-2" : "col-start-2"
-                )}>
-                  <div className="w-20 h-20 rounded-full bg-background flex items-center justify-center border-2 border-primary/50 shadow-lg">
+                <div
+                  className={cn(
+                    "hidden md:flex md:col-start-2 items-center justify-center relative z-10"
+                  )}
+                >
+                  <div className="w-20 h-20 rounded-full bg-background flex items-center justify-center border-2 border-primary/50 shadow-lg z-10">
                     <step.icon className="w-10 h-10 text-primary" />
                   </div>
                 </div>
 
                 {/* Mobile Icon */}
-                 <div className="md:hidden flex items-center gap-4 mt-4">
+                <div className="md:hidden flex items-center gap-4 mt-4">
                   <div className="w-12 h-12 rounded-full bg-background flex items-center justify-center border-2 border-primary/50 shrink-0">
                     <step.icon className="w-6 h-6 text-primary" />
                   </div>
-                   <div className="w-full h-px bg-primary/20"></div>
+                  <div className="w-full h-px bg-primary/20"></div>
                 </div>
 
-
-                {/* Spacer */}
-                <div className="hidden md:block"></div>
+                {/* end item */}
               </MotionDiv>
             ))}
           </MotionDiv>

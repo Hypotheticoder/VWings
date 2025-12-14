@@ -1,7 +1,7 @@
 "use client";
 
-import { useRef, useEffect } from 'react';
-import * as THREE from 'three';
+import { useRef, useEffect } from "react";
+import * as THREE from "three";
 
 const vertexShader = /* glsl */ `
 varying vec2 v_texcoord;
@@ -129,7 +129,7 @@ void main() {
 `;
 
 const ShapeBlur = ({
-  className = '',
+  className = "",
   variation = 0,
   pixelRatioProp = 2,
   shapeSize = 1.2,
@@ -137,17 +137,17 @@ const ShapeBlur = ({
   borderSize = 0.05,
   circleSize = 0.3,
   circleEdge = 0.5,
-  color = '#F5C300'
+  color = "#F5C300",
 }: {
-    className?: string;
-    variation?: number;
-    pixelRatioProp?: number;
-    shapeSize?: number;
-    roundness?: number;
-    borderSize?: number;
-    circleSize?: number;
-    circleEdge?: number;
-    color?: string;
+  className?: string;
+  variation?: number;
+  pixelRatioProp?: number;
+  shapeSize?: number;
+  roundness?: number;
+  borderSize?: number;
+  circleSize?: number;
+  circleEdge?: number;
+  color?: string;
 }) => {
   const mountRef = useRef<HTMLDivElement>(null);
 
@@ -171,7 +171,7 @@ const ShapeBlur = ({
 
     const renderer = new THREE.WebGLRenderer({ alpha: true });
     renderer.setClearColor(0x000000, 0);
-    mount.appendChild(renderer.domElement);
+    if (mount && renderer.domElement) mount.appendChild(renderer.domElement);
 
     const geo = new THREE.PlaneGeometry(1, 1);
     const material = new THREE.ShaderMaterial({
@@ -186,29 +186,60 @@ const ShapeBlur = ({
         u_roundness: { value: roundness },
         u_borderSize: { value: borderSize },
         u_circleSize: { value: circleSize },
-        u_circleEdge: { value: circleEdge }
+        u_circleEdge: { value: circleEdge },
       },
       defines: { VAR: variation },
-      transparent: true
+      transparent: true,
     });
 
     const quad = new THREE.Mesh(geo, material);
     scene.add(quad);
 
-    const onPointerMove = (e: MouseEvent) => {
+    const onPointerMove = (e: MouseEvent | PointerEvent) => {
+      if (!mount) return;
       const rect = mount.getBoundingClientRect();
-      vMouse.set(e.clientX - rect.left, e.clientY - rect.top);
+      const clientX = (e as PointerEvent).clientX ?? (e as MouseEvent).clientX;
+      const clientY = (e as PointerEvent).clientY ?? (e as MouseEvent).clientY;
+      vMouse.set(clientX - rect.left, clientY - rect.top);
     };
 
-    document.addEventListener('mousemove', onPointerMove);
-    document.addEventListener('pointermove', onPointerMove);
+    // determine where to listen for pointer events.
+    // If this mount element is decorative and has `pointer-events: none`,
+    // walk up to the first ancestor that accepts pointer events, otherwise use the mount.
+    let pointerTarget: EventTarget | null = mount;
+    try {
+      const style = window.getComputedStyle(mount);
+      if (style && style.pointerEvents === "none") {
+        let p: HTMLElement | null = mount.parentElement;
+        while (p && window.getComputedStyle(p).pointerEvents === "none")
+          p = p.parentElement;
+        pointerTarget = p || document;
+      }
+    } catch (e) {
+      pointerTarget = document;
+    }
+
+    // attach listeners to the resolved target
+    if (pointerTarget && (pointerTarget as HTMLElement).addEventListener) {
+      (pointerTarget as HTMLElement).addEventListener(
+        "pointermove",
+        onPointerMove as EventListener
+      );
+      (pointerTarget as HTMLElement).addEventListener(
+        "mousemove",
+        onPointerMove as EventListener
+      );
+    } else {
+      document.addEventListener("pointermove", onPointerMove as EventListener);
+      document.addEventListener("mousemove", onPointerMove as EventListener);
+    }
 
     const resize = () => {
-      if(!mountRef.current) return;
+      if (!mountRef.current) return;
       const container = mountRef.current;
       w = container.clientWidth;
       h = container.clientHeight;
-      const dpr = Math.min(window.devicePixelRatio, 2);
+      const dpr = Math.min(window.devicePixelRatio, 2) || pixelRatioProp || 1;
 
       renderer.setSize(w, h);
       renderer.setPixelRatio(dpr);
@@ -225,7 +256,7 @@ const ShapeBlur = ({
     };
 
     resize();
-    window.addEventListener('resize', resize);
+    window.addEventListener("resize", resize);
 
     const ro = new ResizeObserver(() => resize());
     if (mountRef.current) ro.observe(mountRef.current);
@@ -235,11 +266,17 @@ const ShapeBlur = ({
       const dt = time - lastTime;
       lastTime = time;
 
-      ['x', 'y'].forEach(k => {
-        vMouseDamp[k as 'x' | 'y'] = THREE.MathUtils.damp(vMouseDamp[k as 'x' | 'y'], vMouse[k as 'x' | 'y'], 8, dt);
+      ["x", "y"].forEach((k) => {
+        vMouseDamp[k as "x" | "y"] = THREE.MathUtils.damp(
+          vMouseDamp[k as "x" | "y"],
+          vMouse[k as "x" | "y"],
+          8,
+          dt
+        );
       });
-      
-      material.uniforms.u_color.value.set(color);
+
+      // update dynamic uniforms
+      if (material.uniforms.u_color) material.uniforms.u_color.value.set(color);
 
       renderer.render(scene, camera);
       animationFrameId = requestAnimationFrame(update);
@@ -248,16 +285,60 @@ const ShapeBlur = ({
 
     return () => {
       cancelAnimationFrame(animationFrameId);
-      window.removeEventListener('resize', resize);
+      window.removeEventListener("resize", resize);
       if (ro) ro.disconnect();
-      document.removeEventListener('mousemove', onPointerMove);
-      document.removeEventListener('pointermove', onPointerMove);
       if (mount) {
+        if (
+          pointerTarget &&
+          (pointerTarget as HTMLElement).removeEventListener
+        ) {
+          try {
+            (pointerTarget as HTMLElement).removeEventListener(
+              "mousemove",
+              onPointerMove as EventListener
+            );
+            (pointerTarget as HTMLElement).removeEventListener(
+              "pointermove",
+              onPointerMove as EventListener
+            );
+          } catch (e) {
+            // ignore
+          }
+        } else {
+          document.removeEventListener(
+            "mousemove",
+            onPointerMove as EventListener
+          );
+          document.removeEventListener(
+            "pointermove",
+            onPointerMove as EventListener
+          );
+        }
+      }
+      if (mount && renderer.domElement && mount.contains(renderer.domElement)) {
         mount.removeChild(renderer.domElement);
+      }
+
+      // dispose three resources to avoid memory leaks
+      try {
+        quad.geometry.dispose();
+        if ((quad.material as THREE.ShaderMaterial).dispose)
+          (quad.material as THREE.ShaderMaterial).dispose();
+      } catch (e) {
+        // ignore disposal errors
       }
       renderer.dispose();
     };
-  }, [variation, pixelRatioProp, shapeSize, roundness, borderSize, circleSize, circleEdge, color]);
+  }, [
+    variation,
+    pixelRatioProp,
+    shapeSize,
+    roundness,
+    borderSize,
+    circleSize,
+    circleEdge,
+    color,
+  ]);
 
   return <div ref={mountRef} className={`w-full h-full ${className}`} />;
 };
